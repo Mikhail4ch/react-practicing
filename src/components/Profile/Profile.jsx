@@ -1,11 +1,12 @@
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = () => {
+const Profile = ({postData}) => {
+  
   return <div>
     <ProfileInfo />
-    <MyPosts />
+    <MyPosts postData = {postData}/>
   </div>
 }
 
-export default Profile;
+export default Profile
