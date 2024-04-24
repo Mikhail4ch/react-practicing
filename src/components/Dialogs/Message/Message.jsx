@@ -2,7 +2,9 @@ import styles from './../Dialogs.module.css';
 
 const Message = ({ message }) => {
     return <div className={styles.message}>
-        {message}
+        
+            {message}
+       
     </div>
 }
 

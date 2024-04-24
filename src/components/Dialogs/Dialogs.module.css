@@ -20,7 +20,13 @@
     padding: 10px;
 }
 
-.messages.message {
+.message {
     padding: 10px;
-    color: white;
+    color: rgba(20, 5, 5, 0.942);
 }
+
+.dialog img {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+  }
