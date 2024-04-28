@@ -1,17 +1,23 @@
+import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 
 
-const Dialogs = ({dialogsData, messagesData}) => {
-
- 
+const Dialogs = ({ dialogsData, messagesData }) => {
 
     let dialogsElements = dialogsData
         .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
 
     let messagesElements = messagesData
         .map(message => <Message message={message.message} id={message.id} />)
+
+    let newMessageElement = React.createRef();
+
+    let addMessage = () => {
+        let text = newMessageElement.current.value
+        alert(text)
+    }
 
     return (
         <>
@@ -32,6 +38,11 @@ const Dialogs = ({dialogsData, messagesData}) => {
                     <Message message={ messageData[2].message} id={ messageData[2].id} />
                     <Message message={ messageData[3].message} id={ messageData[3].id}/>
                     <Message message={ messageData[4].message} id={ messageData[4].id} />*/}
+                    <textarea ref={newMessageElement}></textarea>
+                    <div>
+                        <button onClick={addMessage}> Write message </button>
+                        <button> Remove </button>
+                    </div>
                 </div>
             </div>
         </>
