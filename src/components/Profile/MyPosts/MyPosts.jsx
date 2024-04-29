@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './MyPosts.module.css'
 import Post from './Post/Post';
 
-const MyPosts = ({postData, addPost}) => {
+const MyPosts = ({postData, addPost, newPostText, updateNewPostText}) => {
 
   let postElements = postData
   .map(post => <Post message={post.message} like={post.like} id={post.id} />)
@@ -10,10 +10,15 @@ const MyPosts = ({postData, addPost}) => {
   let newPostElement = React.createRef();
 
   let newPost = () => {
-    let postMessage = newPostElement.current.value 
-    addPost(postMessage)
-    newPostElement.current.value = '';
+    addPost();
   }
+
+  let onPostChange = () => {
+    let newText = newPostElement.current.value;
+    updateNewPostText(newText)
+  }
+
+ 
 
   return (
 
@@ -21,7 +26,7 @@ const MyPosts = ({postData, addPost}) => {
       <h2>My posts</h2>
       <div>
         <div>
-          <textarea ref={newPostElement}></textarea>
+          <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
         </div>
         <div>
           <button onClick={newPost}> Add post </button>

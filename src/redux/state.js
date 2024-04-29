@@ -6,7 +6,8 @@ let state = {
             { id: 1, message: 'Hi, degens !', like: 10 },
             { id: 2, message: 'When is airdrop coming, dude?', like: 15 },
             { id: 3, message: 'Actually, on the 13th on April.', like: 100 }
-        ]
+        ],
+        newPostText: 'ZkSync tomorrow'
     },
 
     dialog: {
@@ -37,13 +38,28 @@ let state = {
     }
 }
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profile.newPostText ,
         like: 0
     };
     state.profile.posts.push(newPost);
+    state.profile.newPostText = ' ';
+    rerenderEntireTree(state)
+}
+
+export let addMessage = (newMessage) => {
+    let newOne = {
+        id: 6,
+        message: newMessage
+    };
+    state.dialog.messages.push(newOne);
+    rerenderEntireTree(state)
+}
+
+export let updateNewPostText = (newText) => {
+    state.profile.newPostText = newText
     rerenderEntireTree(state)
 }
 
