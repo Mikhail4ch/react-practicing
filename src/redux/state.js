@@ -40,47 +40,42 @@ let store = {
             ]
         }
     },
-
     getState() {
         return this._state
     },
-
     _rerenderEntireTree() {
         console.log('state changed')
     },
-
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profile.newPostText,
-            like: 0
-        };
-        this._state.profile.posts.push(newPost);
-        this._state.profile.newPostText = ' ';
-        this._rerenderEntireTree(this.getState())
-    },
-
-    addMessage() {
-        let newOne = {
-            id: 6,
-            message: this._state.dialog.newMessageText
-        };
-        this._state.dialog.messages.push(newOne);
-        this._state.dialog.newMessageText = '';
-        this._rerenderEntireTree(this.getState())
-    },
-
-    updateNewPostText(newText) {
-        this._state.profile.newPostText = newText
-        this._rerenderEntireTree(this.getState())
-    },
-
-    updateNewMessageText(newText) {
-        this._state.dialog.newMessageText = newText
-        this._rerenderEntireTree(this.getState())
-    },
     subscribe(observer) {
         this._rerenderEntireTree = observer;
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 5,
+                message: this._state.profile.newPostText,
+                like: 0
+            };
+            this._state.profile.posts.push(newPost);
+            this._state.profile.newPostText = ' ';
+            this._rerenderEntireTree(this.getState())
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profile.newPostText = action.newText
+            this._rerenderEntireTree(this.getState())
+        }
+        else if (action.type === 'ADD-MESSAGE') {
+            let newOne = {
+                id: 6,
+                message: this._state.dialog.newMessageText
+            };
+            this._state.dialog.messages.push(newOne);
+            this._state.dialog.newMessageText = '';
+            this._rerenderEntireTree(this.getState())
+        }
+        else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.dialog.newMessageText = action.newText
+            this._rerenderEntireTree(this.getState())
+        }
     }
 }
 
