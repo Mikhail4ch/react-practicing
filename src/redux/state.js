@@ -1,4 +1,7 @@
-
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let store = {
 
@@ -50,7 +53,7 @@ let store = {
         this._rerenderEntireTree = observer;
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: 5,
                 message: this._state.profile.newPostText,
@@ -59,7 +62,7 @@ let store = {
             this._state.profile.posts.push(newPost);
             this._state.profile.newPostText = ' ';
             this._rerenderEntireTree(this.getState())
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profile.newPostText = action.newText
             this._rerenderEntireTree(this.getState())
         }
@@ -78,6 +81,13 @@ let store = {
         }
     }
 }
+
+export const addPostActionCreator = () => ({ type: ADD_POST });
+export const uppdateTextActionCreator = (newText) => 
+    ({type: UPDATE_NEW_POST_TEXT, newText: newText});
+export const addMessageActionCreator = () => ({ type: ADD_MESSAGE });
+export const uppdateMessageActionCreator = (newText) => 
+    ({type: UPDATE_NEW_MESSAGE_TEXT, newText: newText});
 
 export default store;
 

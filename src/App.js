@@ -9,7 +9,7 @@ import Settings from './components/Settings/Settings';
 import Friends from './components/Friends/Friends';
 import { Route, Routes } from "react-router-dom";
 
-const App = ({appState, dispatch, addMessage,updateNewMessageText}) => {
+const App = ({appState, dispatch}) => {
   return (
       <div className='app-wrapper'>
         <Header />
