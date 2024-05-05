@@ -11,14 +11,12 @@ const MyPosts = ({ postData, newPostText, dispatch }) => {
   let postElements = postData
     .map(post => <Post message={post.message} like={post.like} id={post.id} />)
 
-  let newPostElement = React.createRef();
-
   let newPost = () => {
     dispatch(addPostActionCreator());
   }
 
-  let onPostChange = () => {
-    let newText = newPostElement.current.value;
+  let onPostChange = (e) => {
+    let newText = e.target.value;
     dispatch(uppdateTextActionCreator(newText))
   }
 
@@ -30,7 +28,7 @@ const MyPosts = ({ postData, newPostText, dispatch }) => {
       <h2>My posts</h2>
       <div>
         <div>
-          <textarea onChange={onPostChange} ref={newPostElement} value={newPostText} />
+          <textarea onChange={onPostChange} value={newPostText} />
         </div>
         <div>
           <button onClick={newPost}> Add post </button>

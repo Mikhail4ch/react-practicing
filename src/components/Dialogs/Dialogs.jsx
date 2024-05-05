@@ -13,14 +13,12 @@ const Dialogs = ({ dialogsData, messagesData, newMessageText, dispatch }) => {
     let messagesElements = messagesData
         .map(message => <Message message={message.message} id={message.id} />)
 
-    let newMessageElement = React.createRef();
-
     let addNewMessage = () => {
-        dispatch (addMessageActionCreator())
+        dispatch(addMessageActionCreator())
     }
 
-    let onMessageChange = () => {
-        let newText = newMessageElement.current.value;
+    let onMessageChange = (e) => {
+        let newText = e.target.value;
         dispatch(uppdateMessageActionCreator(newText))
     }
 
@@ -29,22 +27,15 @@ const Dialogs = ({ dialogsData, messagesData, newMessageText, dispatch }) => {
         <>
             <div className={styles.dialogs}>
                 <div className={styles.dialogsItems}>
-
                     {dialogsElements}
-
-                    {/* <DialogItem name={dialogsData[0].name} id={dialogsData[0].id} />
-                    <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>*/}
                 </div>
                 <div className={styles.messages}>
-
-                    {messagesElements}
-
-                    {/* <Message message={ messageData[0].message} id={ messageData[0].id} />
-                    <Message message={ messageData[1].message} id={ messageData[1].id} />
-                    <Message message={ messageData[2].message} id={ messageData[2].id} />
-                    <Message message={ messageData[3].message} id={ messageData[3].id}/>
-                    <Message message={ messageData[4].message} id={ messageData[4].id} />*/}
-                    <textarea onChange={onMessageChange} ref={newMessageElement} value={newMessageText}></textarea>
+                    <div>
+                        {messagesElements}
+                    </div>
+                    <div>
+                        <textarea placeholder='Enter your message' onChange={onMessageChange}  value={newMessageText}></textarea>
+                    </div>
                     <div>
                         <button onClick={addNewMessage}> Write message </button>
                         <button> Remove </button>
