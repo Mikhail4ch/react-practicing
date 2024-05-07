@@ -3,7 +3,6 @@ import styles from './Navbar.module.css';
 import Friend from '../Friends/Friend/Friend';
 
 const Navbar = ({friendsData}) => {
-
     let friendsElements = friendsData
     .map(friend => <Friend friend={friend.name} id={friend.id} />)
 
