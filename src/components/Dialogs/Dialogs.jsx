@@ -2,24 +2,25 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { addMessageActionCreator, uppdateMessageActionCreator } from '../../redux/dialog-reducer'; 
 
 
-const Dialogs = ({ dialogsData, messagesData, newMessageText, dispatch }) => {
+const Dialogs = ({ dialog, addMessage, uppdateMessage}) => {
 
-    let dialogsElements = dialogsData
+    
+
+    let dialogsElements = dialog.dialogs
         .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
 
-    let messagesElements = messagesData
+    let messagesElements = dialog.messages
         .map(message => <Message message={message.message} id={message.id} />)
 
     let addNewMessage = () => {
-        dispatch(addMessageActionCreator())
+        addMessage()
     }
 
     let onMessageChange = (e) => {
         let newText = e.target.value;
-        dispatch(uppdateMessageActionCreator(newText))
+        uppdateMessage(newText)
     }
 
 
@@ -34,7 +35,7 @@ const Dialogs = ({ dialogsData, messagesData, newMessageText, dispatch }) => {
                         {messagesElements}
                     </div>
                     <div>
-                        <textarea placeholder='Enter your message' onChange={onMessageChange}  value={newMessageText}></textarea>
+                        <textarea placeholder='Enter your message' onChange={onMessageChange}  value={dialog.newMessageText}></textarea>
                     </div>
                     <div>
                         <button onClick={addNewMessage}> Write message </button>
