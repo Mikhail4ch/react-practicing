@@ -9,15 +9,15 @@ import Settings from './components/Settings/Settings';
 import Friends from './components/Friends/Friends';
 import { Route, Routes } from "react-router-dom";
 
-const App = ({store, state}) => {
+const App = () => {
   return (
       <div className='app-wrapper'>
         <Header />
-        <Navbar friendsData = {state.sidebar.friends}/>
+        <Navbar />
         <div class='app-wrapper-content'>
           <Routes>
-            <Route path='/dialogs' element={<DialogsContainer store = {store} />} />
-            <Route path='/profile' element={<Profile store = {store} />} />
+            <Route path='/dialogs' element={<DialogsContainer />} />
+            <Route path='/profile' element={<Profile />} />
             <Route path='/Music' element={<Music />} />
             <Route path='/News' element={<News />} />
             <Route path='/Settings' element={<Settings />} />
