@@ -3,9 +3,9 @@ import styles from './MyPosts.module.css'
 import Post from './Post/Post';
 
 
-const MyPosts = ({ postData, newPostText, addPost, updateNewPostText }) => {
+const MyPosts = ({ postData, addPost, updateNewPostText }) => {
 
-  let postElements = postData
+  let postElements = postData.posts
     .map(post => <Post message={post.message} like={post.like} id={post.id} />)
 
   let newPost = () => {
@@ -25,7 +25,7 @@ const MyPosts = ({ postData, newPostText, addPost, updateNewPostText }) => {
       <h2>My posts</h2>
       <div>
         <div>
-          <textarea onChange={onPostChange} value={newPostText} />
+          <textarea onChange={onPostChange} value={postData.newPostText} />
         </div>
         <div>
           <button onClick={newPost}> Add post </button>

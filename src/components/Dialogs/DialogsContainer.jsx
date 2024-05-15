@@ -1,10 +1,9 @@
-import React from 'react';
 import Dialogs from './Dialogs';
 import { addMessageActionCreator, uppdateMessageActionCreator } from '../../redux/dialog-reducer';
-import StoreContext from '../../storeContext';
+import { connect } from 'react-redux';
 
 
-const DialogsContainer = () => {
+/*const DialogsContainer = () => {
 
     return <StoreContext.Consumer>
         {(store) => {
@@ -21,6 +20,26 @@ const DialogsContainer = () => {
         }
         }
     </StoreContext.Consumer>
+} */
+
+let mapStateToProps = (state) => {
+    return {
+        dialog: state.dialog
+    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        uppdateMessage: (newText) => {
+            dispatch(uppdateMessageActionCreator(newText))
+        },
+        addMessage: () => {
+            dispatch(addMessageActionCreator())
+        }
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+
 
 export default DialogsContainer

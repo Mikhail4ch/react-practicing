@@ -1,17 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import Friend from '../Friends/Friend/Friend';
-import StoreContext from '../../storeContext';
+//import Friend from '../Friends/Friend/Friend';
+
 
 const Navbar = () => {
 
-    return <StoreContext.Consumer>
-        {(store) => {
-            let state = store.getState()
-            let friendsElements = state.sidebar.friends
-                .map(friend => <Friend friend={friend.name} id={friend.id} />)
+    /*let friendsElements = state.sidebar.friends
+        .map(friend => <Friend friend={friend.name} id={friend.id} />)*/
 
-            return < nav className={styles.nav} >
+
+    return (
+        <>
+            < nav className={styles.nav} >
                 <div className={styles.item}>
                     <NavLink to="/profile" className={({ isActive }) => (isActive ? styles.activeLink : styles.item)}>Profile</NavLink>
                 </div>
@@ -30,13 +30,11 @@ const Navbar = () => {
                 <div className={styles.item}>
                     <NavLink to="/Friends" className={({ isActive }) => (isActive ? styles.activeLink : styles.item)}> Friends</NavLink>
                 </div>
-                <div className={styles.item}>
-                    {friendsElements}
-                </div>
             </nav>
-        }
-        }
-    </StoreContext.Consumer >
+        </>
+    )
 }
+
+
 
 export default Navbar;
